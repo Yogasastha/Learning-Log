@@ -1,1 +1,18 @@
-<p>event-handling works!</p>
+<h1>Event-Handling works!</h1>
+
+<label>Count: {{ count }}</label>
+<br />
+<br />
+<button (click)="increment()">Increment</button>
+<br />
+<br />
+<p>{{ hoverMsg }}</p>
+<button (click)="display()" (mouseover)="onHoverEvent()">Click or Hover</button>
+<p *ngIf="stateValue">{{ msg }}</p>
+
+<p>Your name is : {{name}}</p>
+<input (input)="onInputEvent($event)" placeholder = "Type ur name">
+<!-- <input [(ngModel)]="name" placeholder = "Type ur name"> -->
+<button (click)="onChange()">Change Name</button>
+
+

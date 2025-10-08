@@ -1,1 +1,11 @@
-<p>data-binding works!</p>
+<h1>Data-Binding works!</h1>
+<!-- One way binding -->
+<h1>Learn through the language of {{title || "Data Binding"}}</h1>
+
+
+<br>
+<br>
+<!-- Two way binding -->
+<!-- <input type="text" [value]="project" /> -->
+<!-- <h1>{{title}}  through the language of {{project || "Angular"}}</h1> -->
+<input type="text" [(ngModel)]="title" placeholder="Enter Project Name">

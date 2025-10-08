@@ -1,0 +1,13 @@
+<p>custom-pipe works!</p>
+<h3>Repeat concept using pipe:</h3>
+<p>{{msg  | repeat: 3}} </p>
+<!-- <p>{{typeof(stringObject) }}</p>
+<p>{{stringJson}}</p>
+<p>{{typeof(stringJson)}}</p> -->
+<br>
+<br>
+<h3>Check our Age using pipe concept: </h3>
+<input type="text" [(ngModel)]="date" placeholder = "Enter age (YYYY-MM-DD)">
+
+
+<p>Age : {{(date | currentAge) || 0}} </p>

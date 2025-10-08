@@ -1,6 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { DataBinding } from './Components/data-binding/data-binding';
 import { EventHandling } from './Components/event-handling/event-handling';
+import {CustomPipe} from './Components/custom-pipe/custom-pipe';
+import {RepeatPipe} from './Components/Pipe-Validation/StringRepeat/repeat-pipe';
+
 
 @Component({
   selector: 'app-root',
@@ -8,19 +11,6 @@ import { EventHandling } from './Components/event-handling/event-handling';
   standalone: false,
   styleUrl: './app.css'
 })
-export class App {  
-  constructor() {
-
-  }
-
-  // Step 1 of one way data binding
-  db = new DataBinding();
-  event= new EventHandling();
-  count = this.event.count;
-  increment = () => this.event.increment();
-  // project = this.db.projectName();
-  project = "Hi";
-  title = this.db.title;
-  
-  // title = 'Angular Project';
+export class App {   
+  // title = 'angular-project';
 }

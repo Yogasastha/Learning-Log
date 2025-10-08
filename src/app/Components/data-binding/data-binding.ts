@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class DataBinding {
   
   // Learning For one way data Binding
-  title = 'Learn about Data Binding';
+  title = 'Data Binding';
 
   // Learning For two way data Binding
   projectName = () =>  'Angular Project';

@@ -1,0 +1,13 @@
+<h3>Ng-for works!</h3>
+<ol>
+  <li *ngFor="let collection of industryType">
+    {{ collection.type }}
+    <ul>
+      <li *ngFor="let movies of collection.movies">
+        {{ movies.movie }} : {{movies.hero}}
+      </li>
+    </ul>
+
+    <!-- {{}} -->
+  </li>
+</ol>

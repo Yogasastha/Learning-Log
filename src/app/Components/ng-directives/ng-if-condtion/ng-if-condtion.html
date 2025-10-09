@@ -1,0 +1,16 @@
+<h2>Ng-If-condtion works!</h2>
+
+
+<br>
+<br>
+
+
+<h2 *ngIf="visible" class="ng" [ngClass]="{ 'ng': visible }">Ng - visiblity using ngClass and ngIf works!</h2>
+
+
+<input type="checkbox"  [(ngModel)] = "visible">    
+
+<h2  class="ng" [ngStyle]="{ 'color': colorApply ? 'red' : 'blue' }">Ng - Checkbox using ngStyle & ternary works!</h2>
+
+
+<input type="checkbox"  [(ngModel)] = "colorApply">    

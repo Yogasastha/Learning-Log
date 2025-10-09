@@ -1,0 +1,27 @@
+<p>Home works!</p>
+<br>
+<br>
+
+<h1>Product</h1>
+<label>Product Id: </label>   
+<input type="number" [(ngModel)]="productId" placeholder = "Enter Product Id">
+<br>
+<label>Product Name: </label>
+<input type = "text" [(ngModel)]="productName" placeholder = "Product Name">
+<br>
+<br>
+
+<button (click)="loadProduct()">Load Product</button>   
+
+
+
+<p *ngIf="productId">Product Id : {{productId}} </p>
+<p *ngIf="productName">Product Name : {{productName}} </p>
+
+
+<!-- // -->
+<!-- <button [routerLink]="['/product', 2]" [queryParams]="{ productName: 'Samsung' }">Load Product</button> -->
+<!-- <button [routerLink]="['/product', 2]">Load Product</button> -->
+<!-- <a routerLink="/product/{{productId}}" *ngIf="tag"></a> -->
+
+<router-outlet></router-outlet>

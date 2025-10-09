@@ -10,6 +10,15 @@ import { Pipes } from './Components/pipes/pipes';
 import { CustomPipe } from './Components/custom-pipe/custom-pipe';
 import {RepeatPipe} from './Components/Pipe-Validation/StringRepeat/repeat-pipe';
 import { CurrentAgePipe } from './Components/Pipe-Validation/age/current-age-pipe';
+import { Home } from './Components/Routing/home/home';
+import { About } from './Components/Routing/about/about';
+import { Contact } from './Components/Routing/contact/contact';
+import { Product } from './Components/Routing/product/product';
+import { NgDirectives } from './Components/ng-directives/ng-directives';
+import {CommonModule} from '@angular/common';
+import {NgIfCondtion} from './Components/ng-directives/ng-if-condtion/ng-if-condtion';
+import {NgForCondition} from './Components/ng-directives/ng-for-condition/ng-for-condition'
+
 
 
 @NgModule({
@@ -19,6 +28,13 @@ import { CurrentAgePipe } from './Components/Pipe-Validation/age/current-age-pip
     EventHandling,
     StylingComponent,
     Pipes,
+    Home,
+    About,
+    Contact,
+    Product,
+    NgDirectives,
+    NgForCondition,
+    NgIfCondtion
   ],
   imports: [
     BrowserModule,
@@ -27,6 +43,7 @@ import { CurrentAgePipe } from './Components/Pipe-Validation/age/current-age-pip
     CustomPipe,
     RepeatPipe,
     CurrentAgePipe,
+    CommonModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

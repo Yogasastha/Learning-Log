@@ -13,5 +13,4 @@ export class DataBinding {
 
   // Learning For two way data Binding
   projectName = () =>  'Angular Project';
-
 }

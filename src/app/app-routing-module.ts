@@ -25,10 +25,10 @@ const routes: Routes = [
     path: "contact", component: Contact
   }, 
   {
-    path: "product/:id", component: Product
+    path: "product/:pid", component: Product
   },
   {
-    path: "product/:id/:pname", component: Product
+    path: "product/:pid/:pname", component: Product
   },
   {
     path: "product", component: Product,

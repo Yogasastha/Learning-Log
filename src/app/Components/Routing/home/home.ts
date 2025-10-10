@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: false,
@@ -17,6 +17,6 @@ export class Home {
   constructor(private router: Router) { }
   loadProduct() {
     // this.router.navigate(['product', this.productId]);
-    this.router.navigate(['product', this.productId], { queryParams: { pname: this.productName } });
+    this.router.navigate(['product', this.productId], { queryParams: { pname: this.productName} });
     }
 }

@@ -1,0 +1,66 @@
+<div class="form-container">
+  <h2>User Form</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input id="fullName" formControlName="fullName" type="text" />
+      <div *ngIf="ft('fullName') && f('fullName')" class="error">
+        Full name is required, min length 3, no numbers allowed
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Gender</label>
+      <div>
+        <input type="radio" id="male" formControlName="gender" value="Male" />
+        <label for="male">Male</label>
+        <input type="radio" id="female" formControlName="gender" value="Female" />
+        <label for="female">Female</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="ft('email') && f('email')" class="error">
+        Please enter a valid email address
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input id="phoneNumber" formControlName="phoneNumber" type="text" />
+      <div *ngIf="ft('phoneNumber') && f('phoneNumber')" class="error">
+        Phone number must be 10 digits, no alphabets allowed
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="specialization">Specialization</label>
+      <select formControlName="specialization">
+        <option value="" disabled selected>Select Specialization</option>
+        <option value="Software Engineer">Software Engineer</option>
+        <option value="Data Scientist">Data Scientist</option>
+        <option value="Product Manager">Product Manager</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="experience">Experience (in years)</label>
+      <input id="experience" formControlName="experience" type="number" />
+      <div *ngIf="ft('experience') && f('experience')" class="error">
+        Experience must be between 1 and 50 years, no alphabets allowed
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="bio">Bio</label>
+      <textarea id="bio" formControlName="bio"></textarea>
+      <div *ngIf="ft('bio') && f('bio')" class="error">
+        Bio cannot be more than 200 characters
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+  </form>
+</div>

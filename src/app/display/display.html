@@ -1,0 +1,13 @@
+<div class="display-container">
+  <h2>Submitted Data</h2>
+  <div *ngIf="person">
+    <p><strong>Full Name:</strong> {{ person.fullName }}</p>
+    <p><strong>Gender:</strong> {{ person.gender }}</p>
+    <p><strong>Email:</strong> {{ person.email }}</p>
+    <p><strong>Phone Number:</strong> {{ person.phoneNumber }}</p>
+    <p><strong>Specialization:</strong> {{ person.specialization }}</p>
+    <p><strong>Experience:</strong> {{ person.experience }} years</p>
+    <p><strong>Bio:</strong> {{ person.bio || 'N/A' }}</p>
+  </div>
+  <button (click)="goBack()">Go Back</button>
+</div>

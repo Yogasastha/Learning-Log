@@ -10,8 +10,17 @@ import { Pipes } from './Components/pipes/pipes';
 import { CustomPipe } from './Components/custom-pipe/custom-pipe';
 import {Product} from './Components/Routing/product/product';
 import {NgDirectives} from './Components/ng-directives/ng-directives'
+import {Signup} from './Form-Validation/signup/signup'
+import {Login} from './Form-Validation/login/login'
 
 const routes: Routes = [
+
+  {
+    path:"sign", component: Signup
+  },
+  {
+    path:"login", component: Login
+  },
   // {
   //   path: "", component: App
   // },

@@ -17,7 +17,10 @@ import { Product } from './Components/Routing/product/product';
 import { NgDirectives } from './Components/ng-directives/ng-directives';
 import {CommonModule} from '@angular/common';
 import {NgIfCondtion} from './Components/ng-directives/ng-if-condtion/ng-if-condtion';
-import {NgForCondition} from './Components/ng-directives/ng-for-condition/ng-for-condition'
+import {NgForCondition} from './Components/ng-directives/ng-for-condition/ng-for-condition';
+import { Login } from './Form-Validation/login/login';
+import { Signup } from './Form-Validation/signup/signup';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -34,7 +37,9 @@ import {NgForCondition} from './Components/ng-directives/ng-for-condition/ng-for
     Product,
     NgDirectives,
     NgForCondition,
-    NgIfCondtion
+    NgIfCondtion,
+    Login,
+    Signup
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,7 @@ import {NgForCondition} from './Components/ng-directives/ng-for-condition/ng-for
     RepeatPipe,
     CurrentAgePipe,
     CommonModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

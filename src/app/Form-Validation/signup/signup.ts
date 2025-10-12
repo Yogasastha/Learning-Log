@@ -43,7 +43,7 @@ export class Signup implements OnInit {
   }
 
   rfc() {
-      return this.signUpForm.invaild;
+      return this.signUpForm.invalid;
     }
 
   ngOnInit(): void {
@@ -83,10 +83,6 @@ export class Signup implements OnInit {
   // rfc(controlName: string): boolean {
   //   return this.signUpForm.controls[controlName].invalid;
   // }
-  // rfsc(controlName: string, feature: string): boolean {
-  //   return this.signUpForm.controls[controlName].[feature];
-  // }
-
 
   
   // user: Users[] = [

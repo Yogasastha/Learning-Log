@@ -21,6 +21,7 @@ import {NgForCondition} from './Components/ng-directives/ng-for-condition/ng-for
 import { Login } from './Form-Validation/login/login';
 import { Signup } from './Form-Validation/signup/signup';
 import {ReactiveFormsModule} from '@angular/forms';
+import { DisplayComponent } from '../app/Form-Validation/display-component/display-component';
 
 
 
@@ -39,7 +40,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     NgForCondition,
     NgIfCondtion,
     Login,
-    Signup
+    Signup,
+    DisplayComponent
   ],
   imports: [
     BrowserModule,

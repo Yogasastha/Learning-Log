@@ -12,6 +12,7 @@ import {Product} from './Components/Routing/product/product';
 import {NgDirectives} from './Components/ng-directives/ng-directives'
 import {Signup} from './Form-Validation/signup/signup'
 import {Login} from './Form-Validation/login/login'
+import {DisplayComponent} from './Form-Validation/display-component/display-component'
 
 const routes: Routes = [
 

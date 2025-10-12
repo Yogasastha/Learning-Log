@@ -1,127 +1,95 @@
+<body>
+  <div class="container">
+    <div class="form-panel">
+      <h2>Sign Up</h2>
+      <!-- <p>Fill the form below to create your account</p> -->
+      <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
 
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" formControlName="fullName" class="form-control" />
+          <div *ngIf="isInvalidAndTouched('fullName')" class="error">
+            <div *ngIf="getError('fullName', 'required')">Full Name is required</div>
+            <div *ngIf="getError('fullName', 'minLength')">Full Name must be at least 3 characters</div>
+            <div *ngIf="getError('fullName', 'pattern')">Full Name can only contain letters and spaces</div>
+          </div>
+        </div>
 
-<form [formGroup]="loginForm" class="form-container">
-    <h1>Sign Up</h1>
-    
-    <div>
-        <label name="fullName">Full Name:</label>
-    <input type="text" formControlName="fullName" placeholder="Name" name="fullName" class="box-css">
-    <!-- <div>
-        <div *ngIf="submitted() && rfc().fullName.error" [ngClass]="{'error-border':rfc().fullName.invalid}">* please provide the full name</div>
-    </div> -->
-    <div *ngIf="rfc('fullName') && submitted" [ngClass]="{ 'error-message': rfc('fullName') && submitted }" class="error-message">
-      *This field is required.
+        <div class="form-group">
+          <label>Gender:</label>
+          <label>
+            <input type="radio" formControlName="gender" value="male" [ngModel]="signUpForm.controls.gender.value" />
+            Male
+          </label>
+          <label>
+            <input type="radio" formControlName="gender" value="female" [ngModel]="signUpForm.controls.gender.value" />
+            Female
+          </label>
+          <div *ngIf="isInvalidAndTouched('gender')" class="error">
+            <div *ngIf="getError('gender', 'required')">Gender is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" class="form-control" />
+          <div *ngIf="isInvalidAndTouched('email')" class="error">
+            <div *ngIf="getError('email', 'required')">Email is required</div>
+            <div *ngIf="getError('email', 'email')">Please enter a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
+          <div *ngIf="isInvalidAndTouched('phoneNumber')" class="error">
+            <div *ngIf="getError('phoneNumber', 'required')">Phone Number is required</div>
+            <div *ngIf="getError('phoneNumber', 'pattern')">Phone Number must be exactly 10 digits</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="specialization">Specialization:</label>
+          <select id="specialization" formControlName="specialization" class="form-control">
+            <option value="">Select...</option>
+            <option value="Java">Java</option>
+            <option value="C#">C#</option>
+            <option value="Angular">Angular</option>
+          </select>
+          <div *ngIf="isInvalidAndTouched('specialization')" class="error">
+            <div *ngIf="getError('specialization', 'required')">Specialization is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">Experience:</label>
+          <input type="number" id="experience" formControlName="experience" class="form-control" />
+          <div *ngIf="isInvalidAndTouched('experience')" class="error">
+            <div *ngIf="getError('experience', 'required')">Experience is required</div>
+            <div *ngIf="getError('experience', 'min')">Experience must be at least 1 year</div>
+            <div *ngIf="getError('experience', 'max')">Experience cannot exceed 50 years</div>
+            <div *ngIf="getError('experience', 'pattern')">Experience must be a valid number</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Bio:</label>
+          <textarea id="bio" formControlName="bio" class="form-control" rows="4"></textarea>
+        </div>
+
+        <button type="submit" [disabled]="rfc()" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+
     </div>
-</div>
-
-<br>
-<div>
-    <label name="gender">Gender:</label>
-    <input type="radio" name="gender" value="Male" formControlName="gender">
-    <label  name="male">Male</label>
-    <input type="radio" name="gender" value="Female"  formControlName="gender">
-    <label  name="male">Female</label>
-    <div *ngIf="rfc('gender') && submitted" [ngClass]="{ 'error-message': rfc('gender') && submitted }" class="error-message">
-        *This field is required.
+    <div *ngIf="userData()" class="submitted-data">
+      <h3>Submitted Data:</h3>
+      <pre>{{ userData() | json }}</pre>
     </div>
-</div>
 
-<br>
-<div>
-    <label name="email">Email:</label>
-    <input type="email" formControlName="email" placeholder="eg. xyz@gmail.com" [(ngModel)]="user[0].person[0].email" name="email">
-    <!-- <input type="email" formControlName="email" name="email"/> -->
-    <!-- <div *ngIf="rfc('email') && submitted" [ngClass]="{ 'error-message': rfc('email') && submitted }" class="error-message">
-        *This field is required.
-    </div>  -->
-            <div *ngIf="loginForm.controls['email'].errors?.['pattern'] && submitted" [ngClass]="{ 'error-message': rfc('email') && submitted }">
-      Pattern error
+    <div *ngIf="successMessage" class="alert-success">
+      {{ successMessage }}
     </div>
-</div>
-
-<br>
-<div>
-    <label name="pnumber">Phone Number:</label>
-    <input type="number" formControlName="phNumber" name="pnumber">
-    <div *ngIf="rfc('phNumber')  && submitted" [ngClass]="{ 'error-message': rfc('phNumber') && submitted }" class="error-message">
-        *This field is required.
-    </div>
-    <div *ngIf=" loginForm.controls['phNumber'].errors['maxLength'] && submitted" [ngClass]="{ 'error-message':loginForm.controls['phNumber'].errors['maxLength']}" >this  phone</div>
-</div>
-
-
-<br>
-<div>
-    <label name="experience">Experience:</label>
-    <!-- <small *ngIf="'experience'?.min>
-
-        Does not !! 
-    </small> -->
-
-
-    <input type="number" formControlName="experience" name="experience">
-    <div *ngIf="rfc('phNumber') && submitted" [ngClass]="{ 'error-message': rfc('phNumber') && submitted }" class="error-message">
-      *This field is required.
-    </div>
-    </div>
-    
-    <br>
-    <div>
-    <label name="specialization">specialization:</label>
-    <select name="specialization" formControlName="specialization">
-        <option value="Java">Java</option>
-        <option value="C#">C#</option>
-        <option value="Angular">Angular</option>
-    </select>
-    <div *ngIf="rfc('phNumber') && submitted" [ngClass]="{ 'error-message': rfc('phNumber') && submitted }" class="error-message">
-      *This field is required.
-    </div>
-    </div>
-    
-    <br>
-    <div>
-    <label name="bio">Bio</label>
-    <textarea type="text" name="bio" formControlName="bio" placeholder="Short Describe about you"></textarea>   
-    <div *ngIf="rfc('phNumber') && submitted" [ngClass]="{ 'error-message': rfc('phNumber') && submitted }" class="error-message">
-      *This field is required.
-    </div>
-    </div>
-    <br>
-    <div class="sumbit-div">
-    <button (click)="signUp()" class="submit-button">SignUp</button>
-    </div>
-    
-    
-    <br>
-    <br>
-    <!-- {{user[0].person[0].experience}} -->
-</form>
-
-
-
-
-<!-- 
-Fields:
-
-Full Name – required, min length 3 - No Numbers Allowed
-
-Gender - Radio button 
-
-Email – required, valid email format
-
-Phone Number – required, 10 digits only, No Alphabets Allowed
-
-Specialization – required, select option
-
-Experience – required, must be between 1 and 50,  No Alphabets Allowed
-
-Bio – optional, max length 200 characters
-
-Features:
-Inline validation messages
-Submit button disabled until the form is valid
-On successful submission, the entered data will be displayed below the form
-Sign In UI / Sign Up Routes For Navigate login screen and register screen
-Login Screen Have Email Field.
- 
--->
+  </div>
+</body>

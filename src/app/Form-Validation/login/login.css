@@ -11,8 +11,6 @@
     align-items: center;
     height: 80vh;
     width: 100%;
-    position: relative;
-    z-index: 1;
 }
 
 form {
@@ -23,13 +21,11 @@ form {
     width: 100%;
     max-width: 420px;
     transition: all 0.4s ease;
-    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 form:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 25px 70px #00000059;
 }
 
 h1 {
@@ -90,8 +86,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 6px 20px #667eea80;
 }
 
 .error {
@@ -101,4 +96,41 @@ button[type="submit"]:hover {
     margin-bottom: 15px;
     font-weight: 500;
     display: block;
+    height: 3px;
+}
+
+button[type= "submit"]:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+.signUp {
+    display:flex;
+    margin-top:30px;
+    padding-left: 10px
+    
+}
+
+.signUpBtn{
+    margin-left: 90px;
+    width: 25%;
+    height: 90%; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+}
+.newUser {
+    font-size: 16px;
+    color: #6405d0;
+    display: block;
+    font-weight: 500;
 }

@@ -1,4 +1,4 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule , provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing-module';
@@ -41,7 +41,7 @@ import { DisplayComponent } from '../app/Form-Validation/display-component/displ
     NgIfCondtion,
     Login,
     Signup,
-    DisplayComponent
+    DisplayComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,8 @@ import { DisplayComponent } from '../app/Form-Validation/display-component/displ
     RepeatPipe,
     CurrentAgePipe,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

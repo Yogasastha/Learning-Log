@@ -1,12 +1,18 @@
 <div class="outer">
     <h1>Login</h1>  
 
-    <form [formGroup]="loginForm" (ngSubmit)="loginUp()">
+    <form [formGroup]="loginForm" (ngSubmit)="display()">
         <label for="email">Enter your Email Id:</label>
         <input type="email" id="email" placeholder="eg. xyz@gmail.com" formControlName="email" />
-        <div *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched" class="error">
-            *Email is required with a valid format.
+        <div class="error">
+            <p *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
+                *Email is required with a valid format.
+            </p>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" [disabled]="rfc()" class="loginBtn">Login</button>
+        <div class="signUp">
+            <p class="newUser">Don't Have a account?</p>
+            <button type="button" (click)="login()" class="signUpBtn">signUp</button>
+        </div>
     </form>
 </div>

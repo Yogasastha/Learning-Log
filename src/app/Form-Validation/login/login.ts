@@ -14,17 +14,17 @@ export class Login implements OnInit{
 
   ngOnInit() {
     this.loginForm = this.fBuilder.group({
-     email:  ['', [Validators.required]]
+     email:  ['', [Validators.required, Validators.email]]
     });
   }
-
-  loginUp(){
-    if(this.loginForm.invaild) {
-      console.log(this.loginForm.controls.email.value );
-      this.route.navigate(['sign']);
-    } else {
-      console.log("Error in form tag!!");
-    }
+  rfc() {
+    return this.loginForm.invalid;
   }
-  
+
+  login() {
+      this.route.navigate(['sign']);
+  }
+  display() {
+    this.route.navigate(['display']);
+  }
 }

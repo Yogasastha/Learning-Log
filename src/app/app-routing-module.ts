@@ -22,6 +22,9 @@ const routes: Routes = [
   {
     path:"login", component: Login
   },
+  {
+    path:"display", component: DisplayComponent
+  },
   // {
   //   path: "", component: App
   // },

@@ -7,14 +7,18 @@
       <div class="form-group">
         <label for="fullName">Full Name:</label>
         <input type="text" id="fullName" formControlName="fullName" class="form-control" />
-        <div *ngIf="isInvalidAndTouched('fullName')" class="error">
-          <div *ngIf="getError('fullName', 'required')">Full Name is required</div>
+        <div class="error">
+        <div *ngIf="isInvalidAndTouched('fullName')">
+          <div *ngIf="getError('fullName', 'required')">
+            Full Name is required
+          </div>
           <div *ngIf="getError('fullName', 'minLength')">
             Full Name must be at least 3 characters
           </div>
           <div *ngIf="getError('fullName', 'pattern')">
             Full Name can only contain letters and spaces
           </div>
+        </div>
         </div>
       </div>
 
@@ -38,28 +42,35 @@
           />
           Female
         </label>
-        <div *ngIf="isInvalidAndTouched('gender')" class="error">
+        <!-- <div class="error"> -->
+        <div *ngIf="isInvalidAndTouched('gender')" >
           <div *ngIf="getError('gender', 'required')">Gender is required</div>
         </div>
+        <!-- </div> -->
       </div>
 
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" formControlName="email" class="form-control" />
-        <div *ngIf="isInvalidAndTouched('email')" class="error">
+        <div  class="error">
+        <div *ngIf="isInvalidAndTouched('email')">
           <div *ngIf="getError('email', 'required')">Email is required</div>
           <div *ngIf="getError('email', 'email')">Please enter a valid email address</div>
+        </div>
         </div>
       </div>
 
       <div class="form-group">
         <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
-        <div *ngIf="isInvalidAndTouched('phoneNumber')" class="error">
-          <div *ngIf="getError('phoneNumber', 'required')">Phone Number is required</div>
-          <div *ngIf="getError('phoneNumber', 'pattern')">
-            Phone Number must be exactly 10 digits
+        <input type="text" (input)="formatPhoneNumber($event)"  id="phoneNumber" formControlName="phoneNumber"  class="form-control" (keypress)="handleLength($event, 14)"/>
+        <div class="error">
+          <div *ngIf="isInvalidAndTouched('phoneNumber')">
+            <div *ngIf="getError('phoneNumber', 'required')">Phone Number is required</div>
           </div>
+          <div *ngIf="limit">
+            Phone Number must be exactly 10 digits
+              <!-- <div *ngIf="getError('phoneNumber', 'pattern') && limit"> -->
+            </div>
         </div>
       </div>
 
@@ -71,19 +82,22 @@
           <option value="C#">C#</option>
           <option value="Angular">Angular</option>
         </select>
-        <div *ngIf="isInvalidAndTouched('specialization')" class="error">
+        <div class="error">
+        <div *ngIf="isInvalidAndTouched('specialization')" >
           <div *ngIf="getError('specialization', 'required')">Specialization is required</div>
+        </div>
         </div>
       </div>
 
       <div class="form-group">
         <label for="experience">Experience:</label>
-        <input type="number" id="experience" formControlName="experience" class="form-control" />
-        <div *ngIf="isInvalidAndTouched('experience')" class="error">
+        <input type="number" id="experience" formControlName="experience" class="form-control" (keyup)="handleValue($event, 1)"/>
+        <div class="error">
+        <div *ngIf="isInvalidAndTouched('experience')" >
           <div *ngIf="getError('experience', 'required')">Experience is required</div>
           <div *ngIf="getError('experience', 'min')">Experience must be at least 1 year</div>
           <div *ngIf="getError('experience', 'max')">Experience cannot exceed 50 years</div>
-          <div *ngIf="getError('experience', 'pattern')">Experience must be a valid number</div>
+        </div>
         </div>
       </div>
 
@@ -92,16 +106,22 @@
         <textarea id="bio" formControlName="bio" class="form-control" rows="4"></textarea>
       </div>
 
-      <button type="submit" [disabled]="rfc()" class="btn btn-primary">Submit</button>
+      <button type="submit" [disabled]="this.signUpForm.valid" class="submitbtn" >Submit</button>
     </form>
   </div>
   <div *ngIf="userData()" class="submitted-data">
     <h3>Submitted Data:</h3>
+    <!-- <ul >
+      <li *ngFor="let msg of userData">
+        {{msg}}
+      </li>
+    </ul> -->
     <pre>{{ userData() | json }}</pre>
   </div>
 
   <div *ngIf="successMessage" class="alert-success">
     {{ successMessage }}
+    <!-- 
+<li *ngFor="let collection of industryType"> -->
   </div>
-</div>
 </div>

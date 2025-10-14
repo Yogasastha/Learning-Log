@@ -13,11 +13,16 @@ import {NgDirectives} from './Components/ng-directives/ng-directives'
 import {Signup} from './Form-Validation/signup/signup'
 import {Login} from './Form-Validation/login/login'
 import {DisplayComponent} from './Form-Validation/display-component/display-component'
+import {HttpService} from './Components/http-service/http-service';
+
 
 const routes: Routes = [
 
   {
     path:"sign", component: Signup
+  },
+  {
+    path:"api", component: HttpService
   },
   {
     path:"login", component: Login

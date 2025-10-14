@@ -1,127 +1,173 @@
 <div class="outer">
   <div class="container">
-  <div class="form-panel">
-    <h2>Sign Up</h2>
-    <!-- <p>Fill the form below to create your account</p> -->
-    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
-      <div class="form-group">
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" formControlName="fullName" class="form-control" />
-        <div class="error">
-        <div *ngIf="isInvalidAndTouched('fullName')">
-          <div *ngIf="getError('fullName', 'required')">
-            Full Name is required
-          </div>
-          <div *ngIf="getError('fullName', 'minLength')">
-            Full Name must be at least 3 characters
-          </div>
-          <div *ngIf="getError('fullName', 'pattern')">
-            Full Name can only contain letters and spaces
-          </div>
-        </div>
-        </div>
-      </div>
+    <div class="form-panel">
+      <h2>Sign Up</h2>
+      <!-- <p>Fill the form below to create your account</p> -->
+      <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <div class="form-group">
+          <label for="fullName">Full Name <span class="asterisk">*</span></label>
 
-      <div class="form-group">
-        <label>Gender:</label>
-        <label>
           <input
-            type="radio"
-            formControlName="gender"
-            value="male"
-            [ngModel]="signUpForm.controls.gender.value"
+            type="text"
+            id="fullName"
+            formControlName="fullName"
+            class="form-control"
+            (keypress)="handleName($event)"
           />
-          Male
-        </label>
-        <label>
-          <input
-            type="radio"
-            formControlName="gender"
-            value="female"
-            [ngModel]="signUpForm.controls.gender.value"
-          />
-          Female
-        </label>
-        <!-- <div class="error"> -->
-        <div *ngIf="isInvalidAndTouched('gender')" >
-          <div *ngIf="getError('gender', 'required')">Gender is required</div>
-        </div>
-        <!-- </div> -->
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" formControlName="email" class="form-control" />
-        <div  class="error">
-        <div *ngIf="isInvalidAndTouched('email')">
-          <div *ngIf="getError('email', 'required')">Email is required</div>
-          <div *ngIf="getError('email', 'email')">Please enter a valid email address</div>
-        </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" (input)="formatPhoneNumber($event)"  id="phoneNumber" formControlName="phoneNumber"  class="form-control" (keypress)="handleLength($event, 14)"/>
-        <div class="error">
-          <div *ngIf="isInvalidAndTouched('phoneNumber')">
-            <div *ngIf="getError('phoneNumber', 'required')">Phone Number is required</div>
-          </div>
-          <div *ngIf="limit">
-            Phone Number must be exactly 10 digits
-              <!-- <div *ngIf="getError('phoneNumber', 'pattern') && limit"> -->
+          <div class="error">
+            <div *ngIf="isInvalidAndTouched('fullName')">
+              <div *ngIf="getError('fullName', 'required')">Full Name is required</div>
+              <div *ngIf="getError('fullName', 'minLength')">
+                Full Name must be at least 3 characters
+              </div>
+              <div *ngIf="getError('fullName', 'pattern')">
+                Full Name can only contain letters and spaces
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="form-group">
+          <label>Gender <span class="asterisk">*</span></label>
+          <label>
+            <input
+              type="radio"
+              formControlName="gender"
+              value="male"
+              [ngModel]="signUpForm.controls.gender.value"
+            />
+            Male
+          </label>
+          <label>
+            <input
+              type="radio"
+              formControlName="gender"
+              value="female"
+              [ngModel]="signUpForm.controls.gender.value"
+            />
+            Female
+          </label>
+          <!-- <div class="error"> -->
+          <div *ngIf="isInvalidAndTouched('gender')">
+            <div *ngIf="getError('gender', 'required')">Gender is required</div>
+          </div>
+          <!-- </div> -->
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="asterisk">*</span></label>
+          <input type="email" id="email" formControlName="email" class="form-control" />
+          <div class="error">
+            <div *ngIf="isInvalidAndTouched('email')">
+              <div *ngIf="getError('email', 'required')">Email is required</div>
+              <div *ngIf="getError('email', 'email')">Please enter a valid email address</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number <span class="asterisk">*</span></label>
+          <input
+            type="text"
+            (input)="formatPhoneNumber($event)"
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            class="form-control"
+          />
+          <div class="error">
+            <div *ngIf="isInvalidAndTouched('phoneNumber')">
+              <div *ngIf="getError('phoneNumber', 'required')">Phone Number is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="specialization">Specialization <span class="asterisk">*</span></label>
+          <select id="specialization" formControlName="specialization" class="form-control">
+            <option value="">Select...</option>
+            <option value="Java">Java</option>
+            <option value="C#">C#</option>
+            <option value="Angular">Angular</option>
+          </select>
+          <div class="error">
+            <div *ngIf="isInvalidAndTouched('specialization')">
+              <div *ngIf="getError('specialization', 'required')">Specialization is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">Experience <span class="asterisk">*</span></label>
+          <input
+            type="number"
+            id="experience"
+            formControlName="experience"
+            class="form-control"
+            (keypress)="handleValue($event)"
+          />
+          <div class="error">
+            <div *ngIf="isInvalidAndTouched('experience')">
+              <div *ngIf="getError('experience', 'required')">Experience is required</div>
+              <div *ngIf="getError('experience', 'min')">Experience must be at least 1 year</div>
+              <div *ngIf="getError('experience', 'max')">Experience cannot exceed 50 years</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Bio </label>
+          <textarea id="bio" formControlName="bio" class="form-control" rows="4"></textarea>
+        </div>
+        <div class="button">
+          <button type="submit" class="loginbtn" (click)="login()">Login</button>
+          <button type="submit" [disabled]="this.signUpForm.invalid" class="submitbtn">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="rfc() && submitted" class="submitted-data">
+      <h3>Submitted Data:</h3>
+
+      <div>
+        <strong>Full Name:</strong>
+        <span> {{ display().fullName }}</span>
       </div>
 
-      <div class="form-group">
-        <label for="specialization">Specialization:</label>
-        <select id="specialization" formControlName="specialization" class="form-control">
-          <option value="">Select...</option>
-          <option value="Java">Java</option>
-          <option value="C#">C#</option>
-          <option value="Angular">Angular</option>
-        </select>
-        <div class="error">
-        <div *ngIf="isInvalidAndTouched('specialization')" >
-          <div *ngIf="getError('specialization', 'required')">Specialization is required</div>
-        </div>
-        </div>
+      <div>
+        <strong>Gender:</strong>
+        <span> {{ display().gender }}</span>
       </div>
 
-      <div class="form-group">
-        <label for="experience">Experience:</label>
-        <input type="number" id="experience" formControlName="experience" class="form-control" (keyup)="handleValue($event, 1)"/>
-        <div class="error">
-        <div *ngIf="isInvalidAndTouched('experience')" >
-          <div *ngIf="getError('experience', 'required')">Experience is required</div>
-          <div *ngIf="getError('experience', 'min')">Experience must be at least 1 year</div>
-          <div *ngIf="getError('experience', 'max')">Experience cannot exceed 50 years</div>
-        </div>
-        </div>
+      <div>
+        <strong>Email:</strong>
+        <span> {{ display().email }}</span>
       </div>
 
-      <div class="form-group">
-        <label for="bio">Bio:</label>
-        <textarea id="bio" formControlName="bio" class="form-control" rows="4"></textarea>
+      <div>
+        <strong>Phone Number:</strong>
+        <span> {{ display().phNumber }}</span>
       </div>
 
-      <button type="submit" [disabled]="this.signUpForm.valid" class="submitbtn" >Submit</button>
-    </form>
-  </div>
-  <div *ngIf="userData()" class="submitted-data">
-    <h3>Submitted Data:</h3>
-    <!-- <ul >
-      <li *ngFor="let msg of userData">
-        {{msg}}
-      </li>
-    </ul> -->
-    <pre>{{ userData() | json }}</pre>
-  </div>
+      <div>
+        <strong>Specialization:</strong>
+        <span> {{ display().specialization }}</span>
+      </div>
 
-  <div *ngIf="successMessage" class="alert-success">
-    {{ successMessage }}
-    <!-- 
-<li *ngFor="let collection of industryType"> -->
+      <div>
+        <strong>Experience:</strong>
+        <span> {{ display().experience ? display().experience + ' years' : '' }} </span>
+      </div>
+
+      <div>
+        <strong>Bio:</strong>
+        <span> {{ display().bio }}</span>
+      </div>
+    </div>
+
+    <div *ngIf="rfc() && submitted" class="alert-success">
+      {{ successMessage }}
+    </div>
   </div>
 </div>

@@ -1,0 +1,21 @@
+<p>Http-Service works!</p>
+<div *ngIf="employees.length">
+    <ol>
+        <li *ngFor="let employee of employees">
+            {{employee.name}}<br/>            
+            {{employee.email}}<br/>
+            {{employee.phone}}
+        </li>
+    </ol>
+    <!-- <ol>
+        <li *ngFor="let employee of addValue">
+            {{employee.name}}<br/>            
+            {{employee.email}}<br/>
+            {{employee.phone}}
+        </li>
+    </ol> -->
+
+
+    {{msg}}
+</div>
+

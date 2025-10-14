@@ -1,8 +1,8 @@
-import { Component, signal } from '@angular/core';
-import { DataBinding } from './Components/data-binding/data-binding';
-import { EventHandling } from './Components/event-handling/event-handling';
-import {CustomPipe} from './Components/custom-pipe/custom-pipe';
-import {RepeatPipe} from './Components/Pipe-Validation/StringRepeat/repeat-pipe';
+import { Component } from '@angular/core';
+
+// provide service for the http functionalities
+import {HttpClient} from '@angular/common/http';
+import {HttpClientModule} from'@angular/common/http';
 
 
 @Component({

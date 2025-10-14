@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Person, Users } from '../signup/Person.Interface';
+import { Person } from '../signup/Person.Interface';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   standalone: false,
@@ -9,28 +10,29 @@ import { Person, Users } from '../signup/Person.Interface';
 })
 export class Signup implements OnInit {
   signUpForm: FormGroup | any;
-  // userData: any;
+  show: boolean = false;
   limit: boolean = false;
   successMessage = '';
-  // maskUp = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
-  constructor(private fBuilder: FormBuilder) {}
+  constructor(private fBuilder: FormBuilder, private route: Router) {}
 
   submitted: boolean = false;
-  userData() {
+
+  login() {
+    this.route.navigate(['login']);
+  }
+  display() {
     const data: Person = this.signUpForm.value;
-    const user: Users = { person: [data] };
-    return this.submitted ? user.person : '';
+    return data;
   }
   signUp() {
-    this.submitted = true;
-
-    if (this.signUpForm.valid) {
+    if (this.signUpForm.invalid) {
       return;
     }
+    this.submitted = true;
 
     this.successMessage = 'Form submitted successfully!';
-    console.log(this.userData());
+    console.log(this.display());
   }
 
   isInvalidAndTouched(controlName: string): boolean {
@@ -39,19 +41,18 @@ export class Signup implements OnInit {
   }
 
   getError(controlName: string, errorCode: string): any {
-    console.log(this.signUpForm.controls.fullName.valid);
+    
     return this.signUpForm.controls[controlName]?.errors?.[errorCode];
   }
-
+  
   rfc() {
-    return this.signUpForm.invalid;
+    return this.signUpForm.valid;
   }
+  
 
   formatPhoneNumber(event: any) {
     const e = event.target as HTMLInputElement;
-
     let value = e.value ?? '';
-
     value = value.replace(/\D/g, '');
 
     if (value.length > 3 && value.length <= 6) {
@@ -60,48 +61,45 @@ export class Signup implements OnInit {
       value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
     }
 
-    this.rfcValue('phoneNumber').setValue(value);
+    this.setValue('phoneNumber').setValue(value);
   }
 
-  rfcValue(controlName: string) {
+  setValue(controlName: string) {
     return this.signUpForm.controls[controlName];
   }
-  handleLength(event: KeyboardEvent, value: number) {
-    const e = (event.target as HTMLInputElement).value.length;
-    if (e >= value) {
-      this.limit = true;
-      console.log(this.limit);
-      console.log('Pressed');
-      event.preventDefault();
+
+  handleName(event: KeyboardEvent): boolean {
+    const charCode = event.key;
+    if (/[a-zA-Z ]/.test(charCode)) {
+      return true;
     } else {
-      this.limit = false;
-    }
-  }
-
-  // handleValue(event: any, minValue: number) {
-  //   const inputValue = event.target.value;
-  //   if (parseInt(inputValue, 10) < minValue) {
-  //     event.preventDefault(); // Prevent entering values below minValue
-  //   }
-  // }
-
-   handleValue(event: any, minValue: number) {
-    const inputValue = event.target.value;
-    if (parseInt(inputValue, 10) < minValue) {
       event.preventDefault();
-      this.signUpForm.controls['experience'].setValue(minValue);
+      return false;
     }
   }
+
+  handleValue(event: KeyboardEvent): boolean {
+    const charCode = event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
   ngOnInit(): void {
     this.signUpForm = this.fBuilder.group({
       fullName: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.pattern('^[A-Za-z ]*$')],
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('^[A-Za-z]+(?: [A-Za-z]+)*$'),
+        ],
       ],
-      gender: ['', Validators.required],
+      gender: ['male', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      // (123) 232-3232
-      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      phoneNumber: ['', [Validators.required]],
       specialization: ['', Validators.required],
       experience: [
         '',
@@ -109,30 +107,9 @@ export class Signup implements OnInit {
           Validators.required,
           Validators.min(1),
           Validators.max(50),
-          // Validators.pattern('^[0-9]*$'),
         ],
       ],
       bio: ['', [Validators.maxLength(200)]],
     });
   }
 }
-
-// patterns: any = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
-
-// phonePattern: RegExp = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
-
-// user: Users[] = [
-//   {
-//     person: [
-//       {
-//         fullName: '',
-//         gender: '',
-//         email: '',
-//         phNumber: null,
-//         specialization: '',
-//         experience: null,
-//         bio: '',
-//       },
-//     ],
-//   },
-// ];

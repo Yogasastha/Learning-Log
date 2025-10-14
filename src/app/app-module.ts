@@ -21,7 +21,11 @@ import {NgForCondition} from './Components/ng-directives/ng-for-condition/ng-for
 import { Login } from './Form-Validation/login/login';
 import { Signup } from './Form-Validation/signup/signup';
 import {ReactiveFormsModule} from '@angular/forms';
-import { DisplayComponent } from '../app/Form-Validation/display-component/display-component';
+import {DisplayComponent } from '../app/Form-Validation/display-component/display-component';
+import {HttpService } from './Components/http-service/http-service';
+import {HttpClientModule} from '@angular/common/http';
+
+import { Observable } from 'rxjs';
 
 
 
@@ -42,6 +46,7 @@ import { DisplayComponent } from '../app/Form-Validation/display-component/displ
     Login,
     Signup,
     DisplayComponent,
+    HttpService,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ import { DisplayComponent } from '../app/Form-Validation/display-component/displ
     RepeatPipe,
     CurrentAgePipe,
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,    
+    HttpClientModule,
     
   ],
   providers: [

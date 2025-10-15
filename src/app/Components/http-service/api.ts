@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-  import { HttpHeaders } from '@angular/common/http';
+import { Employee } from './Employee.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,19 +20,15 @@ export class Api {
   }
   
   addData(employee: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-
-    // var data = JSON.stringify(this.data)
-    // console.log(JSON.stringify(this.data));
-    // console.log(this.service.post(this.url, JSON.stringify(this.data), {headers}));
-    
-    // this.service.post(this.url, employee, {headers}).subscribe((res)=> {
-    //   return console.log(res);
-    // // });
-    //   console.log((this.service.post(this.url, employee)));
     return this.service.post(this.url, employee);
+  }
+  patchUserById(id: string, updateData: Partial<Employee>) {
+    const patchUrl = `${this.url}/${id}`;
+
+    return this.service.patch(patchUrl, updateData);
+  }
+  deleteUserById(id: string) {
+    const deleteUrl = `${this.url}/${id}`
+    return this.service.delete(deleteUrl);
   }
 }

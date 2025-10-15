@@ -1,5 +1,5 @@
 <p>Http-Service works!</p>
-<div *ngIf="employees.length">
+<!-- <div *ngIf="employees.length"> -->
     <ol>
         <li *ngFor="let employee of employees">
             {{employee.name}}<br/>            
@@ -7,15 +7,18 @@
             {{employee.phone}}
         </li>
     </ol>
-    <!-- <ol>
-        <li *ngFor="let employee of addValue">
-            {{employee.name}}<br/>            
-            {{employee.email}}<br/>
-            {{employee.phone}}
-        </li>
-    </ol> -->
+    <button (click)="postData()">Add Data</button>
+    <button (click)="deleteData()">Delete Data</button>
+
+    <br>
+    <br>
 
 
-    {{msg}}
-</div>
+    <!-- <form>
+        <label>Enter Id:</label>
+        <input type="text" [(ngModel)]="id" placeholder="Enter your id"/>
+        <button type="button" (click)="patchData()">Get Data</button>
+    </form> -->
+    <!-- {{msg}} -->
+<!-- </div> -->
 

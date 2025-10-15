@@ -9,26 +9,14 @@
     {
       "id": "E12346",
       "name": "Selva",
-      "email": "selva@example.com",
+      "email": "selva@gmail.com",
       "phone": 9876543210
     },
     {
-      "id": "E12347",
+      "id": "E712347",
       "name": "Arun",
-      "email": "arun@example.com",
+      "email": "selva2001@gmail.com",
       "phone": 4567891230
-    },
-    {
-      "id": "1",
-      "name": "Saran",
-      "email": "saran@gmail.com",
-      "phone": 9874654676
-    },
-    {
-      "id": "1",
-      "name": "Saran",
-      "email": "saran@gmail.com",
-      "phone": 9874654676
     }
   ]
 }
